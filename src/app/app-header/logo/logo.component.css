@@ -1,0 +1,14 @@
+h1 {
+	display: inline-block;
+  font-size: 15px;
+	margin-left: 10px;
+	margin-top: 10px;
+	text-transform: uppercase;
+	color: #FFF;
+	font-weight: 700;
+	cursor:pointer;
+}
+
+:host {
+	outline: none;
+}

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>CoursesApplication</title>
@@ -7,8 +8,75 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+	app-root {
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+		overflow-y: hidden;
+	}
+  
+  [class^="icon-"],
+  [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    color: #FFF;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-right: 10px;
+  }
+
+  .icon-user:before {
+    content: "\e971";
+  }
+
+  .icon-exit:before {
+    content: "\ea14";
+  }
+
+  .icon-play2:before {
+    content: "\ea15";
+    font-size: 25px;
+    background: -webkit-linear-gradient(-90deg, rgba(1, 205, 221, 1) 0%, rgba(236, 255, 0, 1) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+
+  }
+
+  .icon-pencil:before {
+    content: "\e905";
+  }
+
+  .icon-clock:before {
+    content: "\e94e";
+  }
+
+  .icon-calendar:before {
+    content: "\e953";
+  }
+
+  .icon-search:before {
+    content: "\e986";
+  }
+
+  .icon-bin2:before {
+    content: "\e9ad";
+  }
+
+</style>
+
 <body>
   <app-root></app-root>
 </body>
+
 </html>

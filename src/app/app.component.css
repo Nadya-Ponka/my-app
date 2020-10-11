@@ -1,0 +1,49 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+
+app-footer {
+	height: fit-content;
+	padding: 10px 50px;
+  display: flex;
+	justify-content: flex-end;
+	background-color: #414452;
+	align-items: center;
+  right: 0;
+  bottom: 0;
+	left: 0;
+	position: relative;
+}
+
+courses-list {
+	overflow-y: scroll;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('./../Fonts/icomoon.eot');
+  src:  url('./../Fonts/icomoon.eot?wiypqr#iefix') format('embedded-opentype'),
+    url('./../Fonts/icomoon.ttf') format('truetype'),
+    url('./../Fonts/icomoon.woff?wiypqr') format('woff'),
+    url('./../Fonts/icomoon.svg?wiypqr#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+app-admin {
+	height: inherit;
+	background-color: lightgray;
+}
+
+courses-list {
+	height: inherit;
+	background-color: #f2f3f7;
+}
+
+app-course-form, app-page-not-found {
+	height: inherit;
+}
