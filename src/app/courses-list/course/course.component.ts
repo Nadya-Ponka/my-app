@@ -15,12 +15,12 @@ import {
 import { CourseItem } from '../../shared/models/course';
 
 @Component({
-  selector: 'app-course',
+  selector: 'course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css']
 })
 
-export class CourseComponent implements OnChanges, OnInit, AfterContentInit, DoCheck,
+export class CourseComponent implements OnInit, OnChanges, AfterContentInit, DoCheck,
 AfterContentChecked, AfterViewChecked, OnDestroy {
   @Input() item: CourseItem;
   @Output() deleteCourse = new EventEmitter < CourseItem > ();
@@ -32,31 +32,31 @@ AfterContentChecked, AfterViewChecked, OnDestroy {
     this.deleteCourse.emit(this.item);
   }
 
-  ngOnChanges() {
+  public ngOnChanges(): void {
     console.log('OnChanges hook: id = ', this.item.id);
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     console.log('OnInit hook');
   }
 
-  ngAfterContentInit() {
+  public ngAfterContentInit(): void {
     console.log('AfterContentInit hook');
   }
 
-  ngDoCheck() {
+  public ngDoCheck(): void {
     console.log('DoCheck hook');
   }
 
-  ngAfterContentChecked() {
+  public ngAfterContentChecked(): void {
     console.log('AfterContentChecked hook');
   }
 
-  ngAfterViewChecked() {
+  public ngAfterViewChecked(): void {
     console.log('AfterContentChecked hook');
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     console.log('OnDestroy hook');
   }
 }

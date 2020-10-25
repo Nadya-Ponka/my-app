@@ -5,11 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app-footer.component.html',
   styleUrls: ['./app-footer.component.css']
 })
-export class AppFooterComponent implements OnInit {
+export class FooterComponent implements OnInit {
   public title = 'Made by Nadya Ponkratova';
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  public ngOnInit(): void {}
 }

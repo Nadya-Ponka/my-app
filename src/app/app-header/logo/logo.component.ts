@@ -9,7 +9,7 @@ export class LogoComponent implements OnInit {
   public title = 'Video course';
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
 }
