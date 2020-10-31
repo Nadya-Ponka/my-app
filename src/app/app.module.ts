@@ -11,6 +11,10 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CoursesListComponent } from './courses-list/courses-list.component';
 import { CourseComponent } from './courses-list/course/course.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HoursPipe } from 'src/app/shared/pipes/hours-pipe/hours.pipe';
+import { BorderDirective } from 'src/app/shared/directives/border.directive';
+import { OrderByPipe } from 'src/app/shared/pipes/orderBy/order-by.pipe';
+import { SearchByPipe } from 'src/app/shared/pipes/searchBy/search-by.pipe';
 
 import { RouterLinkStubDirective } from 'src/app/testing-helpers/router-stubs';
 import { RouterOutletStubComponent } from 'src/app/testing-helpers/router-stubs';
@@ -24,6 +28,10 @@ import { RouterOutletStubComponent } from 'src/app/testing-helpers/router-stubs'
 		BreadcrumbsComponent,
 		CoursesListComponent,
 		CourseComponent,
+		HoursPipe,
+		BorderDirective,
+		OrderByPipe,
+		SearchByPipe,
 		RouterLinkStubDirective,
     RouterOutletStubComponent
   ],

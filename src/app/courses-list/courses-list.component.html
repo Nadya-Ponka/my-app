@@ -4,9 +4,19 @@
 			[(ngModel)]="searchText" name="searchText" >
 		<button class="btn btn-success my-2 my-sm-0" type="button" (click)="onSearchText(searchText)">Search</button>
 	</form>
+
+	<div *ngIf="courses.length > 0; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
+
 	<button class="btn btn-primary my-2 my-lg-0" style="align-self: flex-end">+ Add course</button>
-	<div *ngFor="let element of courses">
-		<course [item]="element" (deleteCourse)="onDeleteCourse($event)"></course>
+	<div *ngFor="let element of courses" class="course">
+		<course [item]="element" (deleteCourse)="onDeleteCourse($event)" appBorder [ngClass]="{'stared': element.topRated}"></course>
 	</div>
 	<button class="btn btn-secondary" type="button" (click)="false">Show more</button>
+</ng-template>
+
+	<ng-template #elseBlock>
+    <h4>No data. Feel free to add new course</h4>
+  </ng-template>
+
 </div>

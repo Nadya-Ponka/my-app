@@ -1,7 +1,8 @@
 export interface ICourse {
   id: number;
   title: string;
-  creationDate: Date;
+	topRated: boolean;
+	creationDate: Date;
   duration: number;
   description: string;
 }
@@ -10,7 +11,8 @@ export class CourseItem implements ICourse {
   constructor(
     public id: number,
     public title: string,
-    public creationDate: Date,
+		public topRated: boolean,
+		public creationDate: Date,
     public duration: number,
     public description: string,
   ) {}
