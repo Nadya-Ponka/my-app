@@ -1,6 +1,6 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { Component } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+// import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
 
@@ -25,12 +25,13 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
 				AppComponent,
-				AppHeaderComponent,
-				BreadcrumbsComponent,
-				CoursesListComponent,
-				FooterComponent
+				// AppHeaderComponent,
+				// BreadcrumbsComponent,
+				// CoursesListComponent,
+				// FooterComponent
 			],
-			imports: [ RouterTestingModule ]
+			// imports: [ RouterTestingModule ]
+			schemas: [NO_ERRORS_SCHEMA]
 		});
 		fixture = TestBed.createComponent(AppComponent);
     // Запускаем первоначальную инициализацию и получаем экземпляры директив навигации

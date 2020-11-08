@@ -16,8 +16,15 @@ app-footer {
 	position: relative;
 }
 
+app-admin {
+	height: 100%;
+	background-color: lightgray;
+}
+
 courses-list {
 	overflow-y: scroll;
+	height: inherit;
+	background-color: #f2f3f7;
 }
 
 @font-face {
@@ -30,16 +37,6 @@ courses-list {
   font-weight: normal;
   font-style: normal;
   font-display: block;
-}
-
-app-admin {
-	height: inherit;
-	background-color: lightgray;
-}
-
-courses-list {
-	height: inherit;
-	background-color: #f2f3f7;
 }
 
 app-course-form, app-page-not-found {

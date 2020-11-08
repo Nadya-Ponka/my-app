@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { AdminModule } from 'src/app/admin/admin.module';
 import { AppComponent } from './app.component';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { FooterComponent } from './app-footer/app-footer.component';
@@ -16,8 +17,8 @@ import { BorderDirective } from 'src/app/shared/directives/border.directive';
 import { OrderByPipe } from 'src/app/shared/pipes/orderBy/order-by.pipe';
 import { SearchByPipe } from 'src/app/shared/pipes/searchBy/search-by.pipe';
 
-import { RouterLinkStubDirective } from 'src/app/testing-helpers/router-stubs';
-import { RouterOutletStubComponent } from 'src/app/testing-helpers/router-stubs';
+// import { RouterLinkStubDirective } from 'src/app/testing-helpers/router-stubs';
+// import { RouterOutletStubComponent } from 'src/app/testing-helpers/router-stubs';
 
 @NgModule({
   declarations: [
@@ -32,10 +33,10 @@ import { RouterOutletStubComponent } from 'src/app/testing-helpers/router-stubs'
 		BorderDirective,
 		OrderByPipe,
 		SearchByPipe,
-		RouterLinkStubDirective,
-    RouterOutletStubComponent
+		// RouterLinkStubDirective,
+    // RouterOutletStubComponent
   ],
-  imports: [ BrowserModule, FormsModule, AppRoutingModule ],
+  imports: [ AdminModule, BrowserModule, FormsModule, AppRoutingModule ],
   providers: [],
   bootstrap: [AppComponent]
 })

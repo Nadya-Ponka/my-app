@@ -38,7 +38,3 @@
 	color: orange;
 	margin-left:10px;
 }
-
-:host.stared div.row.element {
-	background-color: #DCEAE6 !important;
-}
