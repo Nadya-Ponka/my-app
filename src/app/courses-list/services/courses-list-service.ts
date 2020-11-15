@@ -7,8 +7,7 @@ import { initialCourses } from 'src/app/shared/data/courses';
   providedIn: 'root'
 })
 export class CoursesService {
-
-  public courseList = initialCourses;
+	private courseList: CourseItem[]  = [...initialCourses];
 
   constructor() {}
 
@@ -21,25 +20,24 @@ export class CoursesService {
   }
 
   createCourse(course: CourseItem): CourseItem[] {
-    this.courseList.push(course);
-    return this.courseList;
-  }
+			this.courseList.push(course);
+			return this.courseList;
+	}
 
   updateCourse(course: CourseItem): CourseItem[] {
     const i = this.courseList.findIndex(t => t.id === course.id);
 
     if (i > -1) {
       this.courseList.splice(i, 1, course);
+    } else {
+      this.courseList.push(course);
     }
+
     return this.courseList;
   }
 
   removeCourse(course: CourseItem): CourseItem[] {
-    const i = this.courseList.findIndex(t => t.id === course.id);
-
-    if (i > -1) {
-      this.courseList.splice(i, 1);
-    }
-    return this.courseList;
+		this.courseList = this.courseList.filter(item => item.id !== course.id);
+		return this.courseList;
   }
 }

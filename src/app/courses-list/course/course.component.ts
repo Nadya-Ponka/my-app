@@ -1,29 +1,20 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  OnChanges,
-  AfterContentInit,
-  DoCheck,
-  AfterContentChecked,
-  AfterViewChecked,
-  OnDestroy
-} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, AfterContentInit, DoCheck, AfterContentChecked, AfterViewChecked, OnDestroy, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
 import { CourseItem } from '../../shared/models/course';
 
 @Component({
   selector: 'course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css']
+  styleUrls: ['./course.component.css'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class CourseComponent implements OnInit, OnChanges, AfterContentInit, DoCheck,
 AfterContentChecked, AfterViewChecked, OnDestroy {
   @Input() item: CourseItem;
   @Output() deleteCourse = new EventEmitter < CourseItem > ();
+  @Output() editCourse = new EventEmitter < CourseItem > ();
 
   public searchText: string;
   constructor() {}
@@ -58,5 +49,9 @@ AfterContentChecked, AfterViewChecked, OnDestroy {
 
   public ngOnDestroy(): void {
     console.log('OnDestroy hook');
+	}
+	
+	public onEdit(): void {
+    this.editCourse.emit(this.item);
   }
 }

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   public userinfo = {
-    email: '',
+		login: '',
     password: ''
   };
   constructor(

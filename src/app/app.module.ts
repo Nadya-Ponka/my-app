@@ -16,9 +16,12 @@ import { HoursPipe } from 'src/app/shared/pipes/hours-pipe/hours.pipe';
 import { BorderDirective } from 'src/app/shared/directives/border.directive';
 import { OrderByPipe } from 'src/app/shared/pipes/orderBy/order-by.pipe';
 import { SearchByPipe } from 'src/app/shared/pipes/searchBy/search-by.pipe';
+import { CourseFormComponent } from './courses-list/course-form/course-form.component';
 
-// import { RouterLinkStubDirective } from 'src/app/testing-helpers/router-stubs';
-// import { RouterOutletStubComponent } from 'src/app/testing-helpers/router-stubs';
+import { RouterLinkStubDirective } from 'src/app/testing-helpers/router-stubs';
+import { RouterOutletStubComponent } from 'src/app/testing-helpers/router-stubs';
+import { CreationDateComponent } from './courses-list/course-form/creation-date/creation-date.component';
+import { DurationComponent } from './courses-list/course-form/duration/duration.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +36,11 @@ import { SearchByPipe } from 'src/app/shared/pipes/searchBy/search-by.pipe';
 		BorderDirective,
 		OrderByPipe,
 		SearchByPipe,
-		// RouterLinkStubDirective,
-    // RouterOutletStubComponent
+		CourseFormComponent,
+		RouterLinkStubDirective,
+    RouterOutletStubComponent,
+    CreationDateComponent,
+    DurationComponent
   ],
   imports: [ AdminModule, BrowserModule, FormsModule, AppRoutingModule ],
   providers: [],

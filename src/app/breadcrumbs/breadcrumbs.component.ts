@@ -7,15 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./breadcrumbs.component.css']
 })
 export class BreadcrumbsComponent implements OnInit, DoCheck {
-  public currentRoute: string;
+  public currentRoute;
   constructor(private router: Router) {}
 
   public ngOnInit(): void {
     console.log('router: ', this.router);
-    this.currentRoute = this.router.routerState.snapshot.url;
+    this.currentRoute = this.router.routerState.snapshot.url.substring(1);
   }
 
   public ngDoCheck(): void {
-    this.currentRoute = this.router.routerState.snapshot.url;
+    this.currentRoute = this.router.routerState.snapshot.url.substring(1);
   }
 }

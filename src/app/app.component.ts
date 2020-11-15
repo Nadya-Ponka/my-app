@@ -11,6 +11,6 @@ export class AppComponent {
 	public title = 'courses-application';
 	
 	constructor(
-    private authService: AuthService
+    public authService: AuthService
   ) {}
 }

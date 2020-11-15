@@ -9,7 +9,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 })
 export class AppHeaderComponent implements OnInit {
   constructor(
-		private authService: AuthService,
+    public authService: AuthService,
 		private router: Router,
     private route: ActivatedRoute
 	) {}

@@ -8,9 +8,11 @@
 	<div *ngIf="courses.length; then thenBlock else elseBlock"></div>
   <ng-template #thenBlock>
 
-	<button class="btn btn-primary my-2 my-lg-0" style="align-self: flex-end">+ Add course</button>
+	<button class="btn btn-primary my-2 my-lg-0" style="align-self: flex-end" (click)="onCreateCourse()">+ Add course</button>
 	<div *ngFor="let element of courses">
-		<course  class="course" [item]="element" (deleteCourse)="onDeleteCourse($event)" appBorder [ngClass]="{'stared': element.topRated}"></course>
+		<course  class="course" [item]="element" (deleteCourse)="onDeleteCourse($event)" 
+			appBorder [ngClass]="{'stared': element.topRated}" (editCourse)="onEditCourse($event)">
+		</course>
 	</div>
 	<button class="btn btn-secondary" type="button" (click)="false">Show more</button>
 </ng-template>
