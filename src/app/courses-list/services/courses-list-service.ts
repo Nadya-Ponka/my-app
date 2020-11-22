@@ -19,12 +19,7 @@ export class CoursesService {
     return this.getList().find(course => course.id === +id);
   }
 
-  createCourse(course: CourseItem): CourseItem[] {
-			this.courseList.push(course);
-			return this.courseList;
-	}
-
-  updateCourse(course: CourseItem): CourseItem[] {
+  createOrUpdateCourse(course: CourseItem) {
     const i = this.courseList.findIndex(t => t.id === course.id);
 
     if (i > -1) {
@@ -32,8 +27,6 @@ export class CoursesService {
     } else {
       this.courseList.push(course);
     }
-
-    return this.courseList;
   }
 
   removeCourse(course: CourseItem): CourseItem[] {

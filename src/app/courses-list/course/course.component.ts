@@ -10,8 +10,7 @@ import { CourseItem } from '../../shared/models/course';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class CourseComponent implements OnInit, OnChanges, AfterContentInit, DoCheck,
-AfterContentChecked, AfterViewChecked, OnDestroy {
+export class CourseComponent implements OnInit, OnChanges {
   @Input() item: CourseItem;
   @Output() deleteCourse = new EventEmitter < CourseItem > ();
   @Output() editCourse = new EventEmitter < CourseItem > ();
@@ -31,25 +30,25 @@ AfterContentChecked, AfterViewChecked, OnDestroy {
     console.log('OnInit hook');
   }
 
-  public ngAfterContentInit(): void {
-    console.log('AfterContentInit hook');
-  }
+  // public ngAfterContentInit(): void {
+  //   console.log('AfterContentInit hook');
+  // }
 
-  public ngDoCheck(): void {
-    console.log('DoCheck hook');
-  }
+  // public ngDoCheck(): void {
+  //   console.log('DoCheck hook');
+  // }
 
-  public ngAfterContentChecked(): void {
-    console.log('AfterContentChecked hook');
-  }
+  // public ngAfterContentChecked(): void {
+  //   console.log('AfterContentChecked hook');
+  // }
 
-  public ngAfterViewChecked(): void {
-    console.log('AfterContentChecked hook');
-  }
+  // public ngAfterViewChecked(): void {
+  //   console.log('AfterContentChecked hook');
+  // }
 
-  public ngOnDestroy(): void {
-    console.log('OnDestroy hook');
-	}
+  // public ngOnDestroy(): void {
+  //   console.log('OnDestroy hook');
+	// }
 	
 	public onEdit(): void {
     this.editCourse.emit(this.item);

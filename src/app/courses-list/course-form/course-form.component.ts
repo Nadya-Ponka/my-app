@@ -18,11 +18,8 @@ export class CourseFormComponent implements OnInit {
 	) { }
 
 	public onSaveItem() {
-			if (this.item.id === undefined) {
-				this.item.id = this.coursesService.getList().length;
-			}
-			this.coursesService.updateCourse(this.item);
-			this.onGoBack();
+		this.coursesService.createOrUpdateCourse(this.item);
+		this.onGoBack();
 	}
 
 	public onGoBack() {
@@ -31,7 +28,7 @@ export class CourseFormComponent implements OnInit {
 
   public ngOnInit() {
     let url = this.router.routerState.snapshot.url;
-    const navigatedForEdit = /\/courses\/add/.test(url);
+    const navigatedForEdit = /\/courses\/new/.test(url);
     let id: number;
     if (!navigatedForEdit) {
       url = url.slice(9);

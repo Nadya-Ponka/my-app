@@ -15,22 +15,20 @@ export class AuthService {
   redirectUrl: string;
 
   login(userinfo): void {
-    setTimeout(() => {
-      console.log('Log In action: ', userinfo);
+		console.log('Log In action: ', userinfo);
+		localStorage.setItem('userinfo', JSON.stringify(userinfo));
+		const currentUser = this.users.find(usr => usr.login === userinfo.login && usr.password === userinfo.password);
+    if (currentUser) {
+      console.log('Logged in successfully: ', userinfo);
       localStorage.setItem('userinfo', JSON.stringify(userinfo));
-			const currentUser = this.users.find(usr => usr.login === userinfo.login && usr.password === userinfo.password);
-			if (currentUser) {
-				console.log('Logged in successfully: ', userinfo);
-				localStorage.setItem('userinfo', JSON.stringify(userinfo));
-				this.isLoggedIn = true;
-			}		
-}, 1000);
-  }
+      this.isLoggedIn = true;
+		}
+	}
 
   logout(): void {
     this.isLoggedIn = false;
     localStorage.removeItem('userinfo');
-    console.log('Log Out action');
+    console.log('Logout action');
   }
 
   isAuthenticated(): boolean {
@@ -39,6 +37,6 @@ export class AuthService {
 
   getUserInfo(): string {
 		console.log('Get userInfo from localStorage: ', localStorage.getItem('userinfo'));
-		return this.users.find(el =>  el.login === localStorage.getItem("userinfo")).login;
+		return this.users.find(el => el.login === localStorage.getItem('userinfo')).login;
 	}
 }

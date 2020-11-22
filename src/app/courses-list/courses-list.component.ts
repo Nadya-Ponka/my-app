@@ -23,18 +23,16 @@ export class CoursesListComponent implements OnInit {
 		private router: Router
 	) {}
 
-  public onSearchText(text: string): string {
+  public onSearchText(text: string) {
     console.log('Text for search: ', text);
     this.courses = this.searchByPipe.transform(this.coursesService.getList(), text);
-    return text;
   }
 
-  public onDeleteCourse(event: CourseItem): CourseItem {
+  public onDeleteCourse(event: CourseItem) {
 		console.log('Course to delete: ', event.id);
     if (confirm('Do you really want to delete this course? Yes/No')) {
       this.courses = this.coursesService.removeCourse(event);
     }
-		return event;
   }
 
   public ngOnInit(): void {
@@ -42,7 +40,7 @@ export class CoursesListComponent implements OnInit {
 	}
 	
 	public onCreateCourse() {
-    const link = ['/courses/add'];
+    const link = ['/courses/new'];
     this.router.navigate(link);
 	}
 
