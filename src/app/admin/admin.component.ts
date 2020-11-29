@@ -19,9 +19,15 @@ export class AdminComponent implements OnInit {
   ) {}
 
   public onLogin() {
-    this.authService.login(this.userinfo);
-    console.log('Logged in successfully');
-    this.router.navigate(['/courses']);
+    this.authService.login(this.userinfo)
+    .subscribe(user => {
+			if (user) this.router.navigate(['/']);
+			else {
+				alert('Credentials are wrong');
+				this.userinfo.login = '';
+				this.userinfo.password = '';
+			}
+		});
   }
 
   public ngOnInit() {}

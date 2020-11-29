@@ -23,6 +23,8 @@ import { DurationComponent } from 'src/app/courses-list/course-form/duration/dur
 import { PageNotFoundComponent } from 'src/app/page-not-found/page-not-found.component';
 import { RouterLinkStubDirective } from 'src/app/testing-helpers/router-stubs';
 import { RouterOutletStubComponent } from 'src/app/testing-helpers/router-stubs';
+import { CoursesAPIProvider } from 'src/app/courses-list/services/courses.config';
+import { CoursesObservableService } from 'src/app/courses-list/services/courses-observable.service';	
 
 @NgModule({
   declarations: [
@@ -45,7 +47,7 @@ import { RouterOutletStubComponent } from 'src/app/testing-helpers/router-stubs'
     RouterOutletStubComponent
   ],
   imports: [ AdminModule, BrowserModule, FormsModule, AppRoutingModule ],
-  providers: [],
+  providers: [ CoursesAPIProvider, CoursesObservableService ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
