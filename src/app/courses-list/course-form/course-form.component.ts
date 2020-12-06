@@ -50,7 +50,7 @@ export class CourseFormComponent implements OnInit, OnDestroy {
 		this.item = new CourseItem(undefined, '', false, new Date(), 0, '');
 		
 		let url = this.router.routerState.snapshot.url;
-		const navigatedForEdit = /\/courses\/add/.test(url);
+		const navigatedForEdit = /\/courses\/new/.test(url);
     let id: number;
     if (!navigatedForEdit) {
       url = url.slice(9);

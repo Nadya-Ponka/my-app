@@ -6,6 +6,7 @@ import { catchError, delay, switchMap, map, debounce } from 'rxjs/operators';
 
 import { CoursesAPI } from 'src/app/courses-list/services/courses.config';
 import { CourseItem } from 'src/app/shared/models/course';
+import { SpinnerService } from 'src/app/widgets';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,14 @@ import { CourseItem } from 'src/app/shared/models/course';
 export class CoursesObservableService {
   constructor(
     private http: HttpClient,
-    @Inject(CoursesAPI) private coursesBaseUrl: string
+		public spinnerService: SpinnerService,
+		@Inject(CoursesAPI) private coursesBaseUrl: string
   ) {}
 
   getFullList() {
     const url = this.coursesBaseUrl + `courses`;
-    return this.http.get(url)
+		this.spinnerService.show();
+		return this.http.get(url)
       .pipe(
         delay(2000),
         map((courses: Array < any > ) => {
@@ -34,14 +37,15 @@ export class CoursesObservableService {
             );
 
             return result;
-          });
+					});
           return c;
         })
       );
   }
 
   getList(startIndex: number, amount: number, searchInCourses: string) {
-    return this.http.get < [] > (this.coursesBaseUrl + `courses?start=${startIndex}&count=${amount}&textFragment=${searchInCourses}`)
+		this.spinnerService.show();
+		return this.http.get < [] > (this.coursesBaseUrl + `courses?start=${startIndex}&count=${amount}&textFragment=${searchInCourses}`)
       .pipe(
         delay(2000),
         map((courses: Array < any > ) => {
@@ -55,8 +59,8 @@ export class CoursesObservableService {
               course.description
             );
             return result;
-          });
-
+					});
+					this.spinnerService.hide();
           return c;
         })
       );
@@ -64,7 +68,8 @@ export class CoursesObservableService {
 
   getCourseByID(id: number): Observable < CourseItem > {
     const url = `${this.coursesBaseUrl}courses/${id}`;
-    return this.http.get(url)
+		this.spinnerService.show();
+		return this.http.get(url)
       .pipe(
         map((course: any) => {
           console.log('Ответ с бэка: ', course);
@@ -77,15 +82,16 @@ export class CoursesObservableService {
             description: course.description,
             authors: course.authors
           };
-          console.log('RESULT: ', result);
-          return result;
+					this.spinnerService.hide();
+					return result;
         }),
         catchError(this.handleError)
       );
   }
 
   updateCourse(course: CourseItem): Observable < CourseItem > {
-    const url = `${this.coursesBaseUrl}courses/${course.id}`;
+		this.spinnerService.show();
+		const url = `${this.coursesBaseUrl}courses/${course.id}`;
     const toBody = {
       id: course.id,
       name: course.title,
@@ -106,7 +112,8 @@ export class CoursesObservableService {
   }
 
   createCourse(course: CourseItem) {
-    const url = this.coursesBaseUrl + 'courses';
+		this.spinnerService.show();
+		const url = this.coursesBaseUrl + 'courses';
     const toBody = {
       id: course.id,
       name: course.title,
@@ -130,7 +137,8 @@ export class CoursesObservableService {
   }
 
   removeCourse(course: CourseItem, listLength: number) {
-    const url = this.coursesBaseUrl + `courses/${course.id}`;
+		this.spinnerService.show();
+		const url = this.coursesBaseUrl + `courses/${course.id}`;
     return this.http.delete(url)
       .pipe(
         switchMap(() => this.getList(0, listLength - 1, '')),

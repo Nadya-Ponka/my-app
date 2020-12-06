@@ -25,6 +25,7 @@ import { RouterLinkStubDirective } from 'src/app/testing-helpers/router-stubs';
 import { RouterOutletStubComponent } from 'src/app/testing-helpers/router-stubs';
 import { CoursesAPIProvider } from 'src/app/courses-list/services/courses.config';
 import { CoursesObservableService } from 'src/app/courses-list/services/courses-observable.service';	
+import { SpinnerModule } from 'src/app/widgets/spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { CoursesObservableService } from 'src/app/courses-list/services/courses-
 		RouterLinkStubDirective,
     RouterOutletStubComponent
   ],
-  imports: [ AdminModule, BrowserModule, FormsModule, AppRoutingModule ],
+  imports: [ AdminModule, BrowserModule, FormsModule, SpinnerModule.forRoot(), AppRoutingModule ],
   providers: [ CoursesAPIProvider, CoursesObservableService ],
   bootstrap: [AppComponent]
 })

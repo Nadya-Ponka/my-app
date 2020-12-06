@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from 'src/app/admin/services/auth.service';
 import { Router } from '@angular/router';
+import { SpinnerService } from 'src/app/widgets';
 
 @Component({
   selector: 'app-admin',
@@ -15,6 +16,7 @@ export class AdminComponent implements OnInit {
   };
   constructor(
     private authService: AuthService,
+		public spinnerService: SpinnerService,
     private router: Router
   ) {}
 
@@ -30,5 +32,7 @@ export class AdminComponent implements OnInit {
 		});
   }
 
-  public ngOnInit() {}
+  public ngOnInit() {
+		this.spinnerService.hide();
+	}
 }

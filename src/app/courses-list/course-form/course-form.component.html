@@ -1,6 +1,7 @@
 <div class="panel panel-default" style="margin-top:20px;">
   <div class="panel-heading">
-    <h4 class="pannel-title">Edit Item:</h4>
+    <h4 *ngIf="item.id" class="pannel-title">Edit Item:</h4>
+    <h4 *ngIf="!item.id" class="pannel-title">Add new item:</h4>
   </div>
   <div class="panel-body">
     <form (ngSubmit)="onSaveItem()" id="course-form" #form="ngForm">
