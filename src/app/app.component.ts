@@ -19,6 +19,7 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
-    this.spinnerService.isVisible().subscribe((info: boolean) => this.showSpinner = info);
+		this.spinnerService.isVisible().subscribe((info: boolean) => this.showSpinner = info);
+		this.authService.getUserInfo();
 	}
 }

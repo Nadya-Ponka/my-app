@@ -17,7 +17,6 @@ export class SpinnerService {
   }
 
   hide(): void {
-		console.log('TRY TO HIDE SPINNER');
     this.visible.next(false);
   }
 

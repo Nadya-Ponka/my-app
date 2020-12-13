@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/admin/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import { Action } from '@ngrx/store';
 
 @Component({
   selector: 'app-header',
@@ -9,23 +10,23 @@ import { Observable, Subject } from 'rxjs';
   styleUrls: ['./app-header.component.css']
 })
 export class AppHeaderComponent implements OnInit {
-	public userInfo;
-	public isLogged: boolean;
+	public userInfo = new Subject();
+	public userName = '';
 
   constructor(
     public authService: AuthService,
 		private router: Router,
     private route: ActivatedRoute
-	) {}
-
-	public ngOnInit(): void {
-		this.userInfo = new Subject();
-		this.userInfo.pipe(
-		 ).subscribe({
-			next: () => {
-				localStorage.getItem('userinfo')
+	) {
+		this.userInfo.pipe().subscribe({
+			next: (user:string) => {
+				this.userName = user;
 			}
 		});
+	}
+	
+
+	public ngOnInit(): void {
 	}
 	
 	public onLogin() {
@@ -34,10 +35,10 @@ export class AppHeaderComponent implements OnInit {
 	
   public onLogout() {
     this.authService.logout();
-		this.router.navigate(['/courses']);
+		this.router.navigate(['/admin']);
 	}
 
 	public ngDoCheck(): void {
-		this.userInfo = localStorage.getItem('userinfo');
+		this.userInfo.next(JSON.parse(localStorage.getItem('userinfo')) ? JSON.parse(localStorage.getItem('userinfo')).name.firstName : '');
   }
 }

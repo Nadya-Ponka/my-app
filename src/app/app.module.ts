@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RootStoreModule } from 'src/app/@ngrx/root-store.module';
 
 import { AdminModule } from 'src/app/admin/admin.module';
 import { AppComponent } from 'src/app/app.component';
@@ -47,7 +48,7 @@ import { SpinnerModule } from 'src/app/widgets/spinner/spinner.module';
 		RouterLinkStubDirective,
     RouterOutletStubComponent
   ],
-  imports: [ AdminModule, BrowserModule, FormsModule, SpinnerModule.forRoot(), AppRoutingModule ],
+  imports: [ AdminModule, BrowserModule, FormsModule, RootStoreModule, SpinnerModule.forRoot(), AppRoutingModule ],
   providers: [ CoursesAPIProvider, CoursesObservableService ],
   bootstrap: [AppComponent]
 })

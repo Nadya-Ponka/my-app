@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from 'src/app/admin/services/auth.service';
-import { Router } from '@angular/router';
+// @Ngrx
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/@ngrx';
+
+import { Observable } from 'rxjs';
+
+import { UserItem } from 'src/app/shared/models/user';
+import * as UsersActions from 'src/app/@ngrx/admin/users.actions';
 import { SpinnerService } from 'src/app/widgets';
 
 @Component({
@@ -13,23 +19,22 @@ export class AdminComponent implements OnInit {
   public userinfo = {
 		login: '',
     password: ''
-  };
+	};
+	public user$: Observable < UserItem > ;
+
   constructor(
-    private authService: AuthService,
 		public spinnerService: SpinnerService,
-    private router: Router
+		private store: Store < AppState >,
   ) {}
 
   public onLogin() {
-    this.authService.login(this.userinfo)
-    .subscribe(user => {
-			if (user) this.router.navigate(['/']);
-			else {
-				alert('Credentials are wrong');
-				this.userinfo.login = '';
-				this.userinfo.password = '';
-			}
-		});
+    const user = {
+      login: this.userinfo.login,
+      password: this.userinfo.password
+    }
+    this.store.dispatch(UsersActions.checkUser({ user: user	}));
+		this.userinfo.login = '';
+		this.userinfo.password = '';
   }
 
   public ngOnInit() {
