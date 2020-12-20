@@ -1,3 +1,7 @@
-<label for="price">Duration:</label>
-<input type="number" class="form-control" id="duration" name="duration" placeholder="Course duration in minutes"
-	[(ngModel)]="item.duration">
+<div class="form-group">
+	<label for="price">Duration:</label>
+	<span *ngIf="message" style="color:red">{{message}}</span>
+	<input type="text" class="form-control" placeholder="Course duration in minutes"
+		(keyup)="onChangeDuration($event)" formControlName="courseDuration"
+		[ngStyle]="{ 'border-color': message ? 'red' : '' }">
+</div>

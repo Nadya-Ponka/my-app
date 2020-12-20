@@ -1,6 +1,7 @@
-<div>
+<div class="form-group">
 	<label for="creation">Date:</label>
-	<input class="form-control" id="creationDate" name="creationDate" type="text" placeholder="Input course creation date"
-	 [value]="item.creationDate | date:'yyyy-MM-dd'" datetime="yyyy-MM-dd"
+	<span *ngIf="message" style="color:red">{{message}}</span>
+	<input type="text" class="form-control" placeholder="Course creation date"
+	(keyup)="onChangeDate($event)" formControlName="creationDate" datetime="yyyy-MM-dd"
 	>
-</div>
+</div>  <!-- | date:'yyyy-MM-dd' -->

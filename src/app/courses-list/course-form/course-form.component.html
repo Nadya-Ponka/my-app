@@ -1,34 +1,52 @@
 <div class="panel panel-default" style="margin-top:20px;">
   <div class="panel-heading">
-    <h4 *ngIf="item.id" class="pannel-title">Edit Item:</h4>
-    <h4 *ngIf="!item.id" class="pannel-title">Add new item:</h4>
+		<h4 *ngIf="item.id" class="pannel-title">Edit Item:</h4>
+		<h4 *ngIf="!item.id" class="pannel-title">Add new item:</h4>
   </div>
   <div class="panel-body">
-    <form (ngSubmit)="onSaveItem()" id="course-form" #form="ngForm">
-        <div class="form-group">
+    <form (ngSubmit)="onSaveItem(courseForm)" [formGroup]="courseForm">
+			<fieldset>
+				<div class="form-group" [ngClass]="{'has-error': titleValidationMessage }">
             <label for="title">Title:</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="Course title" required
-              [(ngModel)]="item.title">
+						<span *ngIf="titleValidationMessage" style="color:red">{{titleValidationMessage}}</span>
+						<input type="text" class="form-control" id="title" placeholder="Course title (required)" 
+							formControlName="courseTitle" (keyup)="onBlur('courseTitle')"
+							[ngStyle]="{ 'border-color': titleValidationMessage ? 'red' : '' }"> 
           </div>
-        <div class="form-group">
-        <label for="description">Description:</label>
-        <textarea type="text" class="form-control" id="description" name="description" placeholder="Course description" required
-          [(ngModel)]="item.description"></textarea>
-      </div>
-      <div class="form-group">
-				<app-creation-date [(item)]="item" (input)="item.creationDate = $event.target.value"></app-creation-date>
+        <div class="form-group" [ngClass]="{'has-error': descriptionValidationMessage }">
+					<label for="description">Description:</label>
+					<span *ngIf="descriptionValidationMessage" style="color:red">{{descriptionValidationMessage}}</span>
+					<textarea type="text" class="form-control" id="description" formControlName="courseDescription" 
+						placeholder="Course description (required)" (keyup)="onBlur('courseDescription')"
+						[ngStyle]="{ 'border-color': descriptionValidationMessage ? 'red' : '' }"> 
+					</textarea>
+      	</div>
+<!--       <div class="form-group">
+        <label for="creationDate">Date:</label>
+				<input type="date" class="form-control" id="creationDate" name="creationDate" [value]="item.creationDate | date:'yyyy-MM-dd'" (input)="item.creationDate = $event.target.value">
 			</div>
-      <div class="form-group">
-				<app-duration [(item)]="item"></app-duration>
-			</div>
+ -->			
+				
+				<form-creation-date formControlName="creationDate" [message]="durationValidationMessage"
+				style="display: inline-block; margin-right: 25px;width:250px;"></form-creation-date>
+				<span>{{ item.creationDate | date:'dd/MM/yyyy'}}</span>
+
+				<form-duration [message]="durationValidationMessage" formControlName="courseDuration"
+					style="display: inline-block; margin: 0 25px;width:250px;">
+				</form-duration> 
+				<span>{{ courseForm.controls.courseDuration.value | hours }}</span>
+
       <!-- <div class="form-group">
-          <label for="category">Author:</label>
-          <input type="number" class="form-control" id="category" name="category" placeholder="Change available"
-            [(ngModel)]="item.category">
+					<div><strong>Author:</strong></div>
+					<div *ngFor="let auth of item.authors, let i = index">
+						<input type="text" id="{{'author' + i}}" class="form-control" name="auth.lastName" [value]="auth.lastName">
+					</div>
         </div> -->
-      <button type="submit" class="btn btn-primary" [disabled]="form.invalid" style="margin-right: 25px;">Save
-      </button>
-      <button class="btn btn-primary" type="button" (click)="onGoBack()">Cancel</button>
-    </form>
+			</fieldset>
+			<button type="submit" class="btn btn-primary" style="margin-right: 25px;">Save
+			</button><!--  [disabled]="courseForm.invalid"  -->
+			<button class="btn btn-primary" type="button" (click)="onGoBack()">Cancel
+			</button>
+		</form>
   </div>
 </div>

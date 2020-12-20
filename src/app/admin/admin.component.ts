@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit {
 
   constructor(
 		public spinnerService: SpinnerService,
-		private store: Store < AppState >,
+		private store: Store < AppState >
   ) {}
 
   public onLogin() {

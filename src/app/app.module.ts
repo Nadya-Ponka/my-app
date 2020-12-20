@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RootStoreModule } from 'src/app/@ngrx/root-store.module';
 
@@ -27,6 +27,7 @@ import { RouterOutletStubComponent } from 'src/app/testing-helpers/router-stubs'
 import { CoursesAPIProvider } from 'src/app/courses-list/services/courses.config';
 import { CoursesObservableService } from 'src/app/courses-list/services/courses-observable.service';	
 import { SpinnerModule } from 'src/app/widgets/spinner/spinner.module';
+import { ValidatorsModule } from 'src/app/courses-list/course-form/validators/validators.module';
 
 @NgModule({
   declarations: [
@@ -44,11 +45,11 @@ import { SpinnerModule } from 'src/app/widgets/spinner/spinner.module';
 		CourseFormComponent,
 		CreationDateComponent,
     DurationComponent,
-    PageNotFoundComponent,
+		PageNotFoundComponent,
 		RouterLinkStubDirective,
     RouterOutletStubComponent
   ],
-  imports: [ AdminModule, BrowserModule, FormsModule, RootStoreModule, SpinnerModule.forRoot(), AppRoutingModule ],
+  imports: [ AdminModule, BrowserModule, FormsModule, ReactiveFormsModule,	ValidatorsModule, RootStoreModule, SpinnerModule.forRoot(), AppRoutingModule ],
   providers: [ CoursesAPIProvider, CoursesObservableService ],
   bootstrap: [AppComponent]
 })

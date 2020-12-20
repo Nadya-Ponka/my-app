@@ -80,11 +80,15 @@ export class AuthService {
       })
 	}
 
-  logout(): void {
+  logout() {
     this.isLoggedIn = false;
 		localStorage.removeItem('userinfo');
 		localStorage.removeItem('fakeToken');
-    console.log('Log Out action');
+		console.log('Log Out action');
+		
+		return new Promise(resolve => resolve())
+		.then(this.wait(2000))
+		.then(() => null);
   }
 
   isAuthenticated(): any {

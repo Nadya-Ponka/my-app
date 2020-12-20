@@ -27,6 +27,7 @@ export class CoursesListComponent implements OnInit {
 	public searchText: string = '';
 	public inputSearchText;
   public courses$: Observable < ReadonlyArray < CourseItem >>;
+	private count: number = 5;
 
   constructor(
 		private orderByPipe: OrderByPipe,
@@ -97,8 +98,7 @@ export class CoursesListComponent implements OnInit {
     this.router.navigate(link);
 	}
 	public onShowMore(): void {
-    this.coursesObservableService.getList(this.courses.length, 5, '').subscribe(data => {
-      this.courses.push(...data);
-    });
+		this.store.dispatch(CoursesActions.getCoursesPartly({info: { startIndex: this.count, amount: 5, text: ''}}));
+		this.count +=5;
   }
 }

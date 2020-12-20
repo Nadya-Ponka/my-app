@@ -3,6 +3,10 @@ import { AuthService } from 'src/app/admin/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { Action } from '@ngrx/store';
+import { Store, select, } from '@ngrx/store';
+
+import { AppState, selectUsersData, selectUsersError  } from 'src/app/@ngrx';
+import * as UsersActions from 'src/app/@ngrx/admin/users.actions';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +16,13 @@ import { Action } from '@ngrx/store';
 export class AppHeaderComponent implements OnInit {
 	public userInfo = new Subject();
 	public userName = '';
+	public accessAllowed$;
 
   constructor(
     public authService: AuthService,
 		private router: Router,
-    private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private store: Store < AppState >,
 	) {
 		this.userInfo.pipe().subscribe({
 			next: (user:string) => {
@@ -27,6 +33,8 @@ export class AppHeaderComponent implements OnInit {
 	
 
 	public ngOnInit(): void {
+		this.accessAllowed$ = this.store.pipe(select(selectUsersData));
+		this.accessAllowed$.subscribe( {next: (isShown) => this.userName = isShown} );
 	}
 	
 	public onLogin() {
@@ -34,7 +42,7 @@ export class AppHeaderComponent implements OnInit {
 	}
 	
   public onLogout() {
-    this.authService.logout();
+		this.store.dispatch(UsersActions.logoutUser());
 		this.router.navigate(['/admin']);
 	}
 
