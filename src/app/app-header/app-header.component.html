@@ -1,12 +1,18 @@
 <header>
 	<app-logo routerLink="/" ></app-logo>
+	<div><span class="user-info"> Select Language: </span>
+		<select name="languages" id="lang" [(ngModel)]="selectedLang" (ngModelChange)="onLang()">
+			<option *ngFor="let lang of languages" [ngValue]="lang.value">
+				{{lang.name}}
+		</option>		</select>
+	</div>
 	<div class="admin">
 		<button class="btn btn-primary" (click)="onLogin()" *ngIf="!authService.isAuthenticated()" 
-			routerLink="/admin" title="Admin"><span class="icon-user"></span>Login</button>
+			routerLink="/admin" title="Admin"><span class="icon-user"></span>{{ 'ADMIN.LOGIN' | translate }}</button>
 			<div *ngIf="authService.isAuthenticated()">
-				<span class="user-info">User: {{userName}}</span>
+				<span class="user-info">{{ 'HEADER.USER' | translate }} {{userName}}</span>
 				<button class="btn btn-primary" (click)="onLogout()">
-					<span class="icon-exit" ></span>Logout</button>	
+					<span class="icon-exit" ></span>{{ 'ADMIN.LOGOUT' | translate }}</button>	
 			</div>	
 	</div>
 </header>

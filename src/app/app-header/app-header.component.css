@@ -1,7 +1,7 @@
 header {
   padding: 10px 50px;
   display: flex;
-	justify-content: flex-start;
+	justify-content: space-between;
 	background-color: #414452;
 	align-items: center;
 	width: 100%;
@@ -10,10 +10,6 @@ header {
 app-logo {
 	display: flex;
 	align-items: center;
-}
-
-.admin {
-	margin-left: auto;
 }
 
 input {

@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header (changeLang)="changeLang($event)"></app-header>
 <breadcrumbs *ngIf="authService.isAuthenticated()"></breadcrumbs>
 <app-spinner *ngIf="showSpinner"></app-spinner>
 <router-outlet></router-outlet>

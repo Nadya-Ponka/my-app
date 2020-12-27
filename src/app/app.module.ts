@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RootStoreModule } from 'src/app/@ngrx/root-store.module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AdminModule } from 'src/app/admin/admin.module';
 import { AppComponent } from 'src/app/app.component';
@@ -29,6 +32,10 @@ import { CoursesObservableService } from 'src/app/courses-list/services/courses-
 import { SpinnerModule } from 'src/app/widgets/spinner/spinner.module';
 import { ValidatorsModule } from 'src/app/courses-list/course-form/validators/validators.module';
 
+export function HttpLoaderFactory(http: HttpClient) {
+	return new TranslateHttpLoader(http);;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +56,24 @@ import { ValidatorsModule } from 'src/app/courses-list/course-form/validators/va
 		RouterLinkStubDirective,
     RouterOutletStubComponent
   ],
-  imports: [ AdminModule, BrowserModule, FormsModule, ReactiveFormsModule,	ValidatorsModule, RootStoreModule, SpinnerModule.forRoot(), AppRoutingModule ],
+	imports: [ 
+		AdminModule, 
+		BrowserModule, 
+		FormsModule, 
+		ReactiveFormsModule,	
+		ValidatorsModule, 
+		RootStoreModule, 
+		HttpClientModule,
+		TranslateModule.forRoot({
+			loader: {
+				provide: TranslateLoader,
+				useFactory: HttpLoaderFactory,
+				deps: [HttpClient]
+			}
+		}),
+		SpinnerModule.forRoot(), 
+		AppRoutingModule 
+	],
   providers: [ CoursesAPIProvider, CoursesObservableService ],
   bootstrap: [AppComponent]
 })

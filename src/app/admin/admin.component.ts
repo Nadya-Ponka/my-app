@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 // @Ngrx
 import { Store } from '@ngrx/store';
@@ -24,6 +25,7 @@ export class AdminComponent implements OnInit {
 
   constructor(
 		public spinnerService: SpinnerService,
+		public translateService: TranslateService,
 		private store: Store < AppState >
   ) {}
 

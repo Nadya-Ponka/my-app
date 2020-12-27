@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from 'src/app/admin/services/auth.service';
 import { SpinnerService } from 'src/app/widgets';
@@ -15,11 +16,18 @@ export class AppComponent {
 
   constructor(
 		public authService: AuthService,
-		public spinnerService: SpinnerService
-  ) {}
+		public spinnerService: SpinnerService,
+		public translateService: TranslateService
+  ) {
+		translateService.setDefaultLang('en');
+	}
 
   ngOnInit() {
 		this.spinnerService.isVisible().subscribe((info: boolean) => this.showSpinner = info);
 		this.authService.getUserInfo();
+	}
+
+	public changeLang(lang) {
+		this.translateService.setDefaultLang(lang);
 	}
 }

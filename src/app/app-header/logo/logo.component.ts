@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-logo',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logo.component.css']
 })
 export class LogoComponent implements OnInit {
-  public title = 'Video course';
-  constructor() { }
+  constructor(
+		public translateService: TranslateService
+	) {}
 
   public ngOnInit(): void {
   }

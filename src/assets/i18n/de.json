@@ -1,0 +1,16 @@
+{
+	"REQUIRED": "erforderlich",
+	"HEADER": {
+		"TITLE": "Videokurs",
+		"USER": "Benutzer: "
+	},
+	"ADMIN": {
+		"LOGIN": "Anmelden",
+		"LOGOUT": "Abmelden",
+		"ENTER_PASSWORD": "Passwort eingeben",
+		"ENTER_LOGIN": "Login eingeben",
+		"FORGOT": "Sie haben Ihr Passwort vergessen?",
+		"PASSWORD": "Passwort"
+	}
+
+}

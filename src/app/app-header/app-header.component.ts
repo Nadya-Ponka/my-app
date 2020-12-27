@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/admin/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
@@ -14,10 +14,17 @@ import * as UsersActions from 'src/app/@ngrx/admin/users.actions';
   styleUrls: ['./app-header.component.css']
 })
 export class AppHeaderComponent implements OnInit {
+	@Output() changeLang = new EventEmitter < string > ();
+
 	public userInfo = new Subject();
 	public userName = '';
 	public accessAllowed$;
+	public selectedLang;
 
+	public languages = [
+		{value: 'en', name: 'English'},
+		{value: 'de', name: 'German'}
+	]
   constructor(
     public authService: AuthService,
 		private router: Router,
@@ -48,5 +55,10 @@ export class AppHeaderComponent implements OnInit {
 
 	public ngDoCheck(): void {
 		this.userInfo.next(JSON.parse(localStorage.getItem('userinfo')) ? JSON.parse(localStorage.getItem('userinfo')).name.firstName : '');
+	}
+	
+	public onLang(): void {
+    this.changeLang.emit(this.selectedLang);
   }
+
 }
